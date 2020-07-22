@@ -80,7 +80,7 @@ def index():
                 filename_pdf = "Nilai_"+MHS+".pdf"
                 css = ["static/css/bootstrap.min.css","static/style.css"]
                 # config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-                pdf = pdfkit.from_string(html, False,configuration=config, css=css)
+                pdf = pdfkit.from_string(html, False, css=css)
                 # return "test"
                 response = make_response(pdf)
                 response.headers["Content-Type"] = "application/pdf"
