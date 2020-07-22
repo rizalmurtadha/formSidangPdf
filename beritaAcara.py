@@ -84,7 +84,7 @@ def index():
                     # return "test"
                     response = make_response(pdf)
                     response.headers["Content-Type"] = "application/pdf"
-                    response.headers["Content-Disposition"] = "attachment; filename=image.pdf"
+                    response.headers["Content-Disposition"] = "inline; filename=image.pdf"
                     # return "0sx"
                     return response
                 else:

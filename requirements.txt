@@ -20,4 +20,5 @@ python-csv
 pandas
 numpy
 pdfkit
+python-pdf
 statsmodels
