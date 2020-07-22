@@ -4,12 +4,22 @@ import pandas as pd
 import numpy as np
 import csv
 import pdfkit
+import subprocess
 from datetime import date 
 
 app = Flask(__name__) 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+if 'DYNO' in os.environ:
+    print ('loading wkhtmltopdf path on heroku')
+    WKHTMLTOPDF_CMD = subprocess.Popen(
+        ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+        stdout=subprocess.PIPE).communicate()[0].strip()
+else:
+    print ('loading wkhtmltopdf path on localhost')
+    MYDIR = os.path.dirname(__file__)    
+    WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
 
 @app.route("/",methods=["GET", "POST"])
 def index():
